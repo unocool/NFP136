@@ -8,6 +8,9 @@ public Ouvriere (){
 public void chercherNourriture(Fleurs fleur) {
 	fatigue++;
 	possessionNourriture = true;
-	//creer get et set dans fleurs
+	fleur.setQuantiteNourriture(fleur.getQuantiteNourriture()-1);
+}
+public void stockerNourriture(Ruche ruche) {
+	
 }
 }
