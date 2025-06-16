@@ -1,33 +1,55 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class InterfaceAbeilles extends JFrame {
+	
+    private Monde monde;
 
-    public InterfaceAbeilles() {
-    	setTitle("Le monde des abeilles");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    // Composants de l'interface
+    private JLabel labelQuantite = new JLabel("Quantité de nourriture :");
+    private JTextField champQuantite = new JTextField(10);
+    private JButton boutonFloraison = new JButton("Floraison");
 
-        JPanel contenuFenetre = new JPanel();
-        //Création d'un layout qui empile les composants de haut en bas
-        contenuFenetre.setLayout(new BoxLayout(contenuFenetre, BoxLayout.Y_AXIS));
+    public InterfaceAbeilles(Monde monde) {
+    	this.monde = monde;
+    	
+    	//Création d'un zone princpale qui contiendra la zone d'explication et les boutons intéractifs
+    	JPanel contenuFenetre = new JPanel();
+    	
+    	//Création de la zone de texte explicative
+    	JTextField zoneTexte = new JTextField("Le programme se comporte de cette façon ...");
+    	contenuFenetre.add(zoneTexte, BorderLayout.NORTH);
+    	
+    	
+        JPanel fenetreBouton = new JPanel();
+        GridLayout disposition = new GridLayout(3, 3);
+        fenetreBouton.setLayout(disposition);
 
-      //50 est la hauteur des bandes
-        int nbBandes = getHeight() / 50;
-
-        // Création des bandes noirs et jaunes de façon alternée
-        for (int i = 0; i <= nbBandes; i++) {
-        	JPanel bande = new JPanel();         
-            if (i % 2 == 0) {
-                bande.setBackground(Color.BLACK);
-            } else {
-                bande.setBackground(Color.YELLOW);
-            }
-            
-            contenuFenetre.add(bande);
-        }
-
-        setContentPane(contenuFenetre);
-        setVisible(true);
+        champQuantite.setText(Integer.toString(monde.getFleurs().getQuantiteNourriture()));
+   
+        // Ajout des composants pour la gestion de la fleur
+        fenetreBouton.add(labelQuantite);
+        fenetreBouton.add(champQuantite);
+        fenetreBouton.add(boutonFloraison);
+        
+        boutonFloraison.addActionListener(new ActionListener()	
+		{					
+			public void actionPerformed(ActionEvent eve)
+			{
+				monde.getFleurs().floraison();
+                champQuantite.setText(Integer.toString(monde.getFleurs().getQuantiteNourriture()));
+			}
+				
+		});
+        
+        contenuFenetre.add(fenetreBouton, BorderLayout.SOUTH);
+        
+        // Configuration de la fenêtre
+        contenuFenetre.setBackground(new Color(255, 255, 0));
+        this.setContentPane(contenuFenetre);
+        this.setSize(400, 150);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
     }
 }

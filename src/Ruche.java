@@ -2,10 +2,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Ruche {
-private Reine reine = new Reine(5);
+private Reine reine = new Reine(30);
 private int stockNourriture = 0;
 public static final int stockNourritureMax = 20;
-private LinkedList<Ouvriere> listOuvriere = new LinkedList<>(); 
 private Queue<Ouvriere> fileStockNourriture = new LinkedList<>();
 private Queue<Ouvriere> fileCollecteNourriture = new LinkedList<>();
 

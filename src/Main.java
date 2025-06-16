@@ -2,7 +2,8 @@
 public class Main {
 
 	public static void main(String[] args) {
-		 new InterfaceAbeilles();
+		Monde monde = new Monde();
+		 new InterfaceAbeilles(monde);
 	}
 
 }
