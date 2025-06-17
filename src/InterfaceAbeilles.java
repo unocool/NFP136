@@ -7,27 +7,27 @@ public class InterfaceAbeilles extends JFrame {
     private Monde monde;
 
     // Composants de l'interface
-    private JLabel etatNourris = new JLabel("Etat Nourris (Reine) :");
+    private JLabel labelEtatNourris = new JLabel("Etat Nourris (Reine) :");
     private JTextField champEtatNourris = new JTextField(30);
     private JButton boutonPondre = new JButton("Pondre");
     
     private JButton boutonMangerReine = new JButton("Manger reine");
-    private JLabel quantiteStockRuche = new JLabel("Stock Ruche :");
+    private JLabel labelQuantiteStockRuche = new JLabel("Stock Ruche :");
     private JTextField champStockRuche = new JTextField(0);
     
-    private JLabel labelQuantite = new JLabel("Quantité de Pollen :");
-    private JTextField champQuantite = new JTextField(10);
+    private JLabel labelQuantitePollen = new JLabel("Quantité de Pollen :");
+    private JTextField champQuantitePollen = new JTextField(10);
     private JButton boutonFloraison = new JButton("Floraison");  
     
-    private JLabel AbeillesDisponiblesCollecte = new JLabel("Abeille disponible pour collecter :");
-    private JTextField champAbeilleDisponible = new JTextField(0);
+    private JLabel labelAbeillesDisponiblesCollecte = new JLabel("Abeille disponible pour collecter :");
+    private JTextField champAbeilleDisponibleCollecte = new JTextField(0);
     private JButton boutonCollecter = new JButton("Collecter");
     
-    private JLabel AbeillesAttenteStockage = new JLabel("Abeilles en attente pour stockage :");
+    private JLabel labelAbeillesAttenteStockage = new JLabel("Abeilles en attente pour stockage :");
     private JTextField champAbeillesAttenteStockage = new JTextField(0);
     private JButton boutonStocker = new JButton("Stocker");
     
-    private JLabel cimetiereAbeilles = new JLabel("Cimetière abeilles :");
+    private JLabel labelCimetiereAbeilles = new JLabel("Cimetière abeilles :");
     private JTextField champCimetiereAbeilles = new JTextField(0);
     
 
@@ -46,24 +46,35 @@ public class InterfaceAbeilles extends JFrame {
         GridLayout disposition = new GridLayout(3, 6);
         fenetreBouton.setLayout(disposition);
 
-        champQuantite.setText(Integer.toString(monde.getFleurs().getQuantiteNourriture()));
+        champQuantitePollen.setText(Integer.toString(monde.getFleurs().getQuantiteNourriture()));
         champEtatNourris.setText(Integer.toString(monde.getRuche().getReine().getEtatNourris()));
    
         // Ajout des composants pour la gestion de la fleur
-        fenetreBouton.add(etatNourris);
-        fenetreBouton.add(champEtatNourris);
+        
+        fenetreBouton.add(labelEtatNourris); 
+        fenetreBouton.add(boutonMangerReine);
+        fenetreBouton.add(labelQuantitePollen);
+        fenetreBouton.add(labelAbeillesDisponiblesCollecte);   
+        fenetreBouton.add(labelAbeillesAttenteStockage);
+        fenetreBouton.add(labelCimetiereAbeilles);
+        fenetreBouton.add(champEtatNourris); 
+        fenetreBouton.add(labelQuantiteStockRuche);
+        fenetreBouton.add(champQuantitePollen);
+        fenetreBouton.add(champAbeilleDisponibleCollecte);
+        fenetreBouton.add(champAbeillesAttenteStockage);
+        fenetreBouton.add(champCimetiereAbeilles);	
         fenetreBouton.add(boutonPondre);
-        
-        fenetreBouton.add(labelQuantite);
-        fenetreBouton.add(champQuantite);
-        fenetreBouton.add(boutonFloraison);
-        
+        fenetreBouton.add(champStockRuche);
+        fenetreBouton.add(boutonFloraison);  
+        fenetreBouton.add(boutonCollecter); 
+        fenetreBouton.add(boutonStocker);
+                               
         boutonFloraison.addActionListener(new ActionListener()	
 		{					
 			public void actionPerformed(ActionEvent eve)
 			{
 				monde.getFleurs().floraison();
-                champQuantite.setText(Integer.toString(monde.getFleurs().getQuantiteNourriture()));
+                champQuantitePollen.setText(Integer.toString(monde.getFleurs().getQuantiteNourriture()));
 			}
 				
 		});
