@@ -14,4 +14,8 @@ public void chercherNourriture(Fleurs fleur) {
 public void stockerNourriture(Ruche ruche) {
 	ruche.setStockNourriture(ruche.getStockNourriture()+1);
 }
+
+public int getFatigue() {
+	return fatigue;
+}
 }
