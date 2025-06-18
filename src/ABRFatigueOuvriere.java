@@ -1,19 +1,22 @@
 
 public class ABRFatigueOuvriere {
 	private NoeudOuvriere racine;
+	private int taille = 0;
 	// On stock l'ouvrière dans l'abre binaire de recherche selon sa fatigue
 	public void inserer(Ouvriere ouvriere) {
 		if (racine == null){
 			racine = new NoeudOuvriere(ouvriere);
+			taille++;
 			return;
 		}
 
 		NoeudOuvriere courant = racine;
-		//Parcours infixe de l'arbre
+		// Descente dans l'arbre pour insérer au bon endroit
 		while(true) {
 			if(ouvriere.getFatigue() < courant.ouvriere.getFatigue()) {
 				if (courant.fg == null) {
 					courant.fg = new NoeudOuvriere(ouvriere);
+					taille++;
 					break;
 					}
 				courant = courant.fg;
@@ -21,6 +24,7 @@ public class ABRFatigueOuvriere {
 			else {
 				if (courant.fd == null) {
 					courant.fd = new NoeudOuvriere(ouvriere);
+					taille++;
 					break;
 					}
 				courant = courant.fd;
@@ -47,7 +51,13 @@ public class ABRFatigueOuvriere {
 		else {
 			parent.fg = courant.fd;//L'ouvrière avec la fatigue la moins élevée est dans parent.fg, donc on la supprime en la remplaçant par courant.fd
 			}
+		taille--;
 		return courant.ouvriere;
+		
+	}
+	
+	public int getTaille() {
+	    return taille;
 	}
 	
 	// Parcours infixe pour debug/affichage
