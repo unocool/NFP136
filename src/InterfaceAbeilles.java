@@ -116,6 +116,55 @@ public class InterfaceAbeilles extends JFrame {
 				
 		});
         
+        boutonCollecter.addActionListener(new ActionListener()	
+		{					
+			public void actionPerformed(ActionEvent eve)
+			{
+				Ruche ruche = monde.getRuche();
+				Ouvriere ouvriere = ruche.getArbre().extraireMoinsFatiguee();
+				if (ouvriere != null) {
+					//si L'ouvrière est trop fatigué, on l'envoie au cimetière
+					if (ouvriere.getFatigue() >= Ouvriere.fatigueMax) {
+						ruche.ajouterOuvriereCimetierre(ouvriere);
+						champCimetiereAbeilles.setText(Integer.toString(ruche.getTailleCimetierre()));
+						champAbeilleDisponibleCollecte.setText(Integer.toString(ruche.getArbre().getTaille()));
+					}
+					else {
+						Fleurs fleurs = monde.getFleurs();
+						ouvriere.chercherNourriture(fleurs);
+						//Sinon si elle à réussi à collecter de la nourriture (présence de pollen sur la fleur), elle est envoyé dans la file pour stocker
+						if (ouvriere.getPossedeNourriture() == true) {
+							ruche.ajouterOuvriereStock(ouvriere);
+							champAbeillesAttenteStockage.setText(Integer.toString(ruche.getTailleFile()));
+							champAbeilleDisponibleCollecte.setText(Integer.toString(ruche.getArbre().getTaille()));
+							champQuantitePollen.setText(Integer.toString(fleurs.getQuantiteNourriture()));
+						}
+						//Sinon elle retourne dans l'arbre avec de la fatigue en plus, car elle a été chercher de la nourriture sans en trouver (plus de nourriture dans la fleur)
+						else {
+							ABRFatigueOuvriere arbre = monde.getRuche().getArbre();
+						    arbre.inserer(ouvriere);
+						    champEtatNourris.setText(Integer.toString(ruche.getTailleFile()));
+						    champAbeilleDisponibleCollecte.setText(Integer.toString(arbre.getTaille()));
+						}
+					}
+				}
+			}
+				
+		});
+        
+        boutonStocker.addActionListener(new ActionListener()	
+		{					
+			public void actionPerformed(ActionEvent eve)
+			{
+				Ruche ruche = monde.getRuche();
+				Ouvriere ouvriere = ruche.retirerOuvriereStock();
+				if (ouvriere != null) {
+					
+				}
+			}
+				
+		});
+        
         
         
         contenuFenetre.add(fenetreBouton, BorderLayout.SOUTH);
