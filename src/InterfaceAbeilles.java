@@ -39,14 +39,16 @@ public class InterfaceAbeilles extends JFrame {
     	contenuFenetre.setLayout(new BorderLayout());
     	
     	//Création de la zone de texte explicative
-    	JLabel zoneTexte = new JLabel("Le programme se comporte de cette façon : l'états nourris de la reine permet de pondre une ouvrière en la diminuant de 5, "
-    			+"elle est directement envoyée dans la file pour collecter.La reine peut manger en diminuant le stock ruche pour augmenter son états nourris (qui ne peut pas dépasser 30."
+    	JTextArea zoneTexte = new JTextArea();
+    	zoneTexte.setText("Le programme se comporte de cette façon : l'états nourris de la reine permet de pondre une ouvrière en la diminuant de 5, "
+    			+"elle est directement envoyée dans la file pour collecter.La reine peut manger en diminuant le stock ruche pour \naugmenter son états nourris (qui ne peut pas dépasser 30."
     			+"La fleur possède une certaine quantité de pollen, le bouton floraison permet de la mettre au maximum.Les abeilles disponible pour collecter peuvent aller prendre 2 pollen, "
-    			+"elles sont ensuite placées dans la file pour stocker leur butin, aller chercher du pollen augmente la fatigue de l'ouvrière de 1, à 3 points de fatigue l'abeille meurt et va "
-    			+"au cimetière des abeilles (Attention si elle part collecter alors qu'il n'y a pas de pollen présent, elle gagne quand même un point de fatigue).Les abeilles en attente pour "
+    			+"elles sont \nensuite placées dans la file pour stocker leur butin, aller chercher du pollen augmente la fatigue de l'ouvrière de 1, à 3 points de fatigue l'abeille meurt et va "
+    			+"au cimetière des abeilles (Attention si elle part collecter alors qu'il n'y a pas de pollen \nprésent, elle gagne quand même un point de fatigue).Les abeilles en attente pour "
     			+"stockage peuvent aller stocker leur pollen dans le stock ruche, elle seront ensuite placé dans les abeilles disponible pour collecter.");
+    	zoneTexte.setEditable(false);
+        zoneTexte.setBackground(null);
     	contenuFenetre.add(zoneTexte, BorderLayout.NORTH);
-    	
     	
         JPanel fenetreBouton = new JPanel();
         GridLayout disposition = new GridLayout(3, 6);
