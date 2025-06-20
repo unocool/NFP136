@@ -1,8 +1,8 @@
 
 public class Fleurs {
 private int quantiteNourriture = quantiteNourritureMax;
-public static final int quantiteNourritureMax = 10;
-public static final int quantiteNourritureRetirableMax = 1;
+public static final int quantiteNourritureMax = 20;
+public static final int quantiteNourritureRetirableMax = 2;
 
 public Fleurs() {
 }

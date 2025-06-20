@@ -19,7 +19,7 @@ public class InterfaceAbeilles extends JFrame {
     private JTextField champQuantitePollen = new JTextField();
     private JButton boutonFloraison = new JButton("Floraison");  
     
-    private JLabel labelAbeillesDisponiblesCollecte = new JLabel("Abeille disponible pour collecter :");
+    private JLabel labelAbeillesDisponiblesCollecte = new JLabel("Abeilles disponible pour collecter :");
     private JTextField champAbeilleDisponibleCollecte = new JTextField();
     private JButton boutonCollecter = new JButton("Collecter");
     
@@ -39,7 +39,12 @@ public class InterfaceAbeilles extends JFrame {
     	contenuFenetre.setLayout(new BorderLayout());
     	
     	//Création de la zone de texte explicative
-    	JLabel zoneTexte = new JLabel("Le programme se comporte de cette façon ...");
+    	JLabel zoneTexte = new JLabel("Le programme se comporte de cette façon : l'états nourris de la reine permet de pondre une ouvrière en la diminuant de 5, "
+    			+"elle est directement envoyée dans la file pour collecter.La reine peut manger en diminuant le stock ruche pour augmenter son états nourris (qui ne peut pas dépasser 30."
+    			+"La fleur possède une certaine quantité de pollen, le bouton floraison permet de la mettre au maximum.Les abeilles disponible pour collecter peuvent aller prendre 2 pollen, "
+    			+"elles sont ensuite placées dans la file pour stocker leur butin, aller chercher du pollen augmente la fatigue de l'ouvrière de 1, à 3 points de fatigue l'abeille meurt et va "
+    			+"au cimetière des abeilles (Attention si elle part collecter alors qu'il n'y a pas de pollen présent, elle gagne quand même un point de fatigue).Les abeilles en attente pour "
+    			+"stockage peuvent aller stocker leur pollen dans le stock ruche, elle seront ensuite placé dans les abeilles disponible pour collecter.");
     	contenuFenetre.add(zoneTexte, BorderLayout.NORTH);
     	
     	
@@ -157,9 +162,15 @@ public class InterfaceAbeilles extends JFrame {
 			public void actionPerformed(ActionEvent eve)
 			{
 				Ruche ruche = monde.getRuche();
-				Ouvriere ouvriere = ruche.retirerOuvriereStock();
-				if (ouvriere != null) {
-					
+				if(ruche.getStockNourriture() <= (Ruche.stockNourritureMax-Fleurs.quantiteNourritureRetirableMax)) {
+					Ouvriere ouvriere = ruche.retirerOuvriereStock();
+					if (ouvriere != null) {
+						ouvriere.stockerNourriture(ruche);
+						ruche.getArbre().inserer(ouvriere);
+						champStockRuche.setText(Integer.toString(ruche.getStockNourriture()));
+						champAbeilleDisponibleCollecte.setText(Integer.toString(ruche.getArbre().getTaille()));
+						champAbeillesAttenteStockage.setText(Integer.toString(ruche.getTailleFile()));
+					}
 				}
 			}
 				

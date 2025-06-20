@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Ruche {
 private Reine reine = new Reine(30);
-private int stockNourriture = 1;
+private int stockNourriture = 0;
 public static final int stockNourritureMax = 20;
 private Queue<Ouvriere> fileStockNourriture = new LinkedList<>();
 private ABRFatigueOuvriere arbre = new ABRFatigueOuvriere();
