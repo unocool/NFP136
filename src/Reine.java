@@ -1,5 +1,6 @@
 
 public class Reine extends Abeille{
+//Etat nourris est la quantité de nourriture que la reine à mangé
 private int etatNourris;
 public static final int etatNourrisMax = 30;
 public static final int quantiteReineMange = 1;

@@ -1,5 +1,6 @@
 
 public class Ouvriere extends Abeille {
+//La fatigue tue l'ouvrière quand elle atteind la valeur 3 (l'objet ouvrière est déplacé dans l'arraylist cimetière )
 private int fatigue = 0;
 public static final int fatigueMax = 3;
 private boolean possedeNourriture = false;

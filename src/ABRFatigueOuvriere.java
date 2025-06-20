@@ -59,19 +59,5 @@ public class ABRFatigueOuvriere {
 	public int getTaille() {
 	    return taille;
 	}
-	
-	// Parcours infixe pour debug/affichage
-    public void afficherInfixe() {
-        afficherRec(racine);
-    }
-
-    private void afficherRec(NoeudOuvriere n) {
-        if (n != null) {
-            afficherRec(n.fg);
-            System.out.println("Ouvrière: fatigue=" + n.ouvriere.getFatigue());
-            afficherRec(n.fd);
-        }
-    }
-
     
 }
